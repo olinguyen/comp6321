@@ -1,5 +1,4 @@
-function [ w, X ] = LinearRegress( x, y)
+function [w] = LinearRegression( x, y)
 %LinearRegress % w = (X.T * X)^-1 (X.T * Y)
-X = ones(length(x), 1);
-X = horzcat(x, X);
-w = inv((transpose(X) * X)) * X.' * y;
+w = inv((transpose(x) * x)) * x.' * y;
+end

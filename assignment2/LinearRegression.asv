@@ -1,0 +1,4 @@
+function [w] = LinearRegression( x, y, lambda)
+%LinearRegress % w = (X.T * X)^-1 (X.T * Y)
+w = inv(x' * x)) * x.' * y;
+end
