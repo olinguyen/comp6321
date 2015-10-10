@@ -23,5 +23,18 @@ for lambda = 0:1:100
     weights(lambda+1, :) = w;
 end
 
-plot(results(:, 1), results(:, 2)); % Train error
-plot(results(:, 1), results(:, 3)); % Test error
+figure(1);
+plot(results(:, 1), results(:, 2), results(:, 1), results(:, 3));
+title('Error vs lambda');
+legend('Train error', 'Test error');
+xlabel('lambda');
+ylabel('RMSE');
+
+figure(2);
+plot(results(:, 1), weights(:, 1), results(:, 1), weights(:, 2), ...
+    results(:, 1), weights(:, 3), results(:, 1), weights(:, 4));
+
+title('Weights vs lambda');
+legend('w1', 'w2', 'w3', 'w4');
+xlabel('lambda');
+ylabel('Value');

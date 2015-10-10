@@ -5,11 +5,11 @@ x = [x ones(length(x), 1)];
 y = load('./wpbcy.dat');
 [num_samples, num_features] = size(x);
 num_folds = 10;
-lr = 1e-5;
-num_iterations = 2000;
+lr = 1e-3;
+num_iterations = 10000;
 
 
-w = normrnd(0, 1, [num_features 1]) * 0.001; % generate random starting W from normal random numbers
+w = normrnd(0, 1, [1 1]) * 0.001; % generate random starting W from normal random numbers
 
 indices = crossvalind('Kfold', num_samples, num_folds);
 results = zeros(num_folds, 4);
@@ -17,9 +17,9 @@ for i = 1:num_folds
    test_idx = (indices == i);
    train_idx = ~test_idx;
    
-   Xtrain = x(train_idx, :);
+   Xtrain = x(train_idx, 1);
    Ytrain = y(train_idx);
-   Xtest = x(test_idx, :);
+   Xtest = x(test_idx, 1);
    Ytest = y(test_idx);
    
    % Logistic regression

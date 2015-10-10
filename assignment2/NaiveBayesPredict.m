@@ -8,17 +8,17 @@ function [ pred ] = NaiveBayesPredict( x, u_true, std_true, u_false, std_false, 
         prob_x_given_false = 1;
         % Calculate joint probabilities
         for i = 1:num_features
-            prob_x_given_true = prob_x_given_true * GaussianProbDensity(x(sample_idx, i), u_true, std_true);
-            prob_x_given_false = prob_x_given_false * GaussianProbDensity(x(sample_idx, i), u_false, std_false);
+            prob_x_given_true = prob_x_given_true * GaussianProbDensity(x(sample_idx, i), u_true(i), std_true(i));
+            prob_x_given_false = prob_x_given_false * GaussianProbDensity(x(sample_idx, i), u_false(i), std_false(i));
         end
-        
+
         % Calculate class probabilities
         prob_true_given_x = (prob_x_given_true * prob_true) / ...
                 (prob_x_given_true * prob_true + prob_x_given_false * prob_false);
 
         prob_false_given_x = (prob_x_given_false * prob_false) / ...
                         (prob_x_given_true * prob_true + prob_x_given_false * prob_false);
-        
+
         % Make predictions
         if (prob_true_given_x > prob_false_given_x)
             pred(sample_idx) = 1;
