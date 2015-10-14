@@ -11,7 +11,7 @@
 function [w] = LogisticRegressionTrain( w, x, y, lr, num_iterations )
     for j = 1:num_iterations
        [J, grad] = LRCostFunction(w, x, y);
-       w = w - lr * grad;
+       w = w + lr * grad;
     end
 end
 
