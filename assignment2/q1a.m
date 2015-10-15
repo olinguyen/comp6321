@@ -11,7 +11,7 @@ Ytrain = y(1:floor(0.9 * length(y)));
 Xtest = x(floor(0.9 * length(x))+1:end, :);
 Ytest = y(floor(0.9 * length(y))+1:end);
 
-regularization_type = 'l1';
+regularization_type = 'l2';
 
 for lambda = 0:1:100
     w = LinearRegression(Xtrain, Ytrain, lambda, regularization_type);

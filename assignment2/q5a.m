@@ -13,7 +13,7 @@ best_loss = +Inf;
 num_folds = 10;
 
 indices = crossvalind('Kfold', num_samples, num_folds);
-
+% Find best learning rate
 for i = 1:length(lr);
     w = normrnd(0, 1, [num_features 1]) * 0.001; % generate random starting W from normal random numbers
     for fold = 1:num_folds
@@ -39,7 +39,7 @@ for i = 1:length(lr);
     end
 end
 
-% Logistic regression
+% Plot cost of training and testing set during training
 w = normrnd(0, 1, [num_features 1]) * 0.001; % generate random starting W from normal random numbers
 for j = 1:num_iterations
     [Jtrain, grad] = LRCostFunction(w, Xtrain, Ytrain);

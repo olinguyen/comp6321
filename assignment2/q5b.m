@@ -43,3 +43,4 @@ for i = 1:num_folds
    
    results(i, :) = [lr_train_acc lr_test_acc nb_train_acc nb_test_acc];
 end
+disp(results);

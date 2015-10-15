@@ -6,7 +6,7 @@ y = load('./wpbcy.dat');
 [num_samples, num_features] = size(x);
 num_folds = 10;
 lr = 1e-3;
-num_iterations = 10000;
+num_iterations = 5000;
 
 w = normrnd(0, 1, [num_features 1]) * 0.001; % generate random starting W from normal random numbers
 
@@ -40,3 +40,4 @@ for i = 1:num_folds
    
    results(i, :) = [lr_train_acc lr_test_acc nb_train_acc nb_test_acc];
 end
+disp(results);
