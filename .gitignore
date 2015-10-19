@@ -1,3 +1,5 @@
+*.png
+*.m~
 # Object files
 *.o
 *.ko

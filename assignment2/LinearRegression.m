@@ -21,18 +21,14 @@ if reg == 'l1'
          -1, -1, 1, -1;
          -1, -1, -1, 1;
          -1, -1, -1, -1];
-
     H = 2 * x' * x;
     f = 2 * x' * y;
     b = ones(length(A), 1);
-    w = quadprog(H,f,A,b);
+    w = quadprog(H,f,lambda*A,b);
 elseif reg == 'l2'
     I = eye(ny);
     w = inv(x' * x + lambda .* I) * x.' * y;
 else
     disp('Could not recognize regularization type');
 end
-
-
-
 end

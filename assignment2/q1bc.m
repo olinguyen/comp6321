@@ -13,14 +13,16 @@ Ytest = y(floor(0.9 * length(y))+1:end);
 
 regularization_type = 'l1';
 
-for lambda = 0:1:100
+idx = 1
+for lambda = 0:0.2:10
     w = LinearRegression(Xtrain, Ytrain, lambda, regularization_type);
     predictedTest = Xtest*w;
     predictedTrain = Xtrain*w;
     rmseTest = rms(predictedTest - Ytest);
     rmseTrain = rms(predictedTrain - Ytrain);
-    results(lambda+1, :) = [lambda rmseTrain rmseTest];
-    weights(lambda+1, :) = w;
+    results(idx, :) = [lambda rmseTrain rmseTest];
+    weights(idx, :) = w;
+    idx = idx + 1;
 end
 
 figure(1);
