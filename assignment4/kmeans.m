@@ -1,28 +1,31 @@
-function [ cluster_idx ] = kmeans(x, k, centroids)
+function [ cluster_idx, centroids ] = kmeans(x, k, centroids)
     [num_samples, num_feat] = size(x);
     cluster_idx = zeros(num_samples, 1);
-    epochs = 50;
-    
+    epochs = 1;
+    initial_centroids = centroids;
+    dist = zeros(k, 1);
+   
     for epoch = 1:epochs
+        disp(epoch);
         % Assign each sample to the nearest cluster
         for i = 1:num_samples
-            minDist = Inf;
-            minIdx = 1;
             for j = 1:k
-                dist = sum( (x(i, :) - centroids(j, :)).^2 );
-
-                if(dist < minDist)
-                   minDist = dist;
-                   minIdx = j;
-                end
+                dist(j) = norm(x(i, :) - centroids(j, :))^2;
             end
-            cluster_idx(i) = minIdx;
+            [Jmin, cluster_idx(i)] = min(dist);
         end
 
         % Update centroids
         for i=1:k
-            centroids(i, :) = mean(x(cluster_idx == j, :));
+            indices = find(cluster_idx == i);
+            if isempty(indices)
+               centroids(i, :) = initial_centroids(i, :);
+            else
+               centroids(i, :) = mean(x(indices, :));
+               ssd = norm(bsxfun(@minus, centroids(i, :), x(indices, :)))^2;
+               disp(ssd);
+            end
         end
     end
-end
+end 
 
