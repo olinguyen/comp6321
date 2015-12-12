@@ -1,0 +1,13 @@
+optimizer : PCD
+stopcondition {
+  all_processed: false
+  steps: 2000000
+}
+train: true
+batchsize: 200
+data_proto: "/ais/gobi3/u/nitish/flickr/flickr_3GB.pb"
+eval_after: 5000
+checkpoint_after: 100000
+checkpoint_directory: "/ais/gobi3/u/nitish/flickr/models"
+show_after: 1000
+randomize: false
