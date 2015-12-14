@@ -1,0 +1,32 @@
+name: "flickr"
+data {
+  name: "image_unlabelled"
+  file_pattern: "image/unlabelled/combined-*-of-*.npy"
+  size: 975000
+  dimensions: 3857
+  stats_file: "flickr_stats.npz"
+}
+data {
+  name: "image_labelled"
+  file_pattern: "image/labelled/combined-*-of-*.npy"
+  size: 25000
+  dimensions: 3857
+  stats_file: "flickr_stats.npz"
+}
+data {
+  name: "text_unlabelled"
+  file_pattern: "text/text_all_2000_unlabelled.npz"
+  size: 975000
+  dimensions: 1
+  num_labels: 2000
+}
+data {
+  name: "text_labelled"
+  file_pattern: "text/text_all_2000_labelled.npz"
+  size: 25000
+  dimensions: 1
+  num_labels: 2000
+}
+gpu_memory: "4G"
+main_memory: "20G"
+prefix: "/ais/gobi3/u/nitish/flickr"
